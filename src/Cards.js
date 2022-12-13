@@ -104,25 +104,7 @@ function Cards(props) {
                   ></label>
                 </fieldset>
               
-                {/* <button
-                  className="h-h1 mx-3"
-                  onClick={() => props.favourates(card.Id)}
-                >
-                  <span className="text">AddCart</span>
-
-                  <i className="icon ri-check-line ">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="23"
-                      height="23"
-                      fill="currentColor"
-                      class="bi bi-check"
-                      viewBox="0 0 9 10"
-                    >
-                      <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
-                    </svg>
-                  </i>
-                </button> */}
+                
                 <div className="line-1"></div>
                 <button
                   className="h-h1"
@@ -155,7 +137,7 @@ function Cards(props) {
               </button>
               <button
                 className="det "
-                onClick={() => props.setProducts(card.Id)}
+                onClick={() => props.addToCart(card.Id)}
               >
                 AddCart
               </button>

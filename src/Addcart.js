@@ -3,7 +3,7 @@ import React from "react";
 export default function Addcart(props) {
   return (
     <div>
-      <button className="cart-bg">
+      <button className="cart-bg" onClick={()=>props.goToCart("cart")}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="35"

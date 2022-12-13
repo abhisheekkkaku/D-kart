@@ -202,7 +202,7 @@ const Navbar = (props) => {
                 </svg>
               </button>
             </ul>
-            <Addcart />
+            <Addcart goToCart={props.gotofavourates} />
             <button
               className="login btn btn-primary "
               href="Login"

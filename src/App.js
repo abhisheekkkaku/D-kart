@@ -10,6 +10,7 @@ import QuestionBox from "./QuestionBox";
 import FavourateList from "./FavourateList";
 import Login from "./Login";
 import ProductDetails from './ProductDetails';
+import Cart from './Cart';
 
 const PropertiesData = [
   {
@@ -74,10 +75,16 @@ function App() {
   const [showFavourate, SetShowFavourates] = useState("main");
   const [selectedProducts, SetselectedProducts] = useState(0);
   const [selectedProduct, SetselectedProduct] = useState({});
+  const [cart, SetCart] = useState([]);
 
   const favourates = (id) => {
     const fav = Properties.find((p) => p.Id == id);
     SetFavourates([...Favourates, fav]);
+  };
+
+  const addToCart = (id) => {
+    const fav = Properties.find((p) => p.Id == id);
+    SetCart([...cart, fav]);
   };
 
   const gotofavourates = (screenname) => {
@@ -122,7 +129,8 @@ function App() {
     if (showFavourate == "favourate") {
       text = (
         <>
-          <FavourateList favourates={Favourates} />
+          <FavourateList favourates={Favourates}
+           goToMain={gotofavourates} />
         </>
       );
     } else if (showFavourate == "main") {
@@ -130,13 +138,33 @@ function App() {
         <>
           <SearchList search={search} />
           <SmallCards />
-          <Cards properties={FilteredProperties} favourates={favourates} gotofavourates={gotofavourates} setProducts={setProducts}/>
+          <Cards 
+          properties={FilteredProperties} 
+          favourates={favourates} 
+          gotofavourates={gotofavourates} 
+          setProducts={setProducts}
+          addToCart = {addToCart}
+          />
         </>
       );
-    } else{
+    }else if (showFavourate == "cart"){
+      text = (
+        <>
+        <Cart 
+        product={cart} 
+        goToMain={gotofavourates}
+        />
+        </>
+        )
+    } 
+    else{
       text = (
       <>
-      <ProductDetails product={selectedProduct} gotofavourates={gotofavourates}/>
+      <ProductDetails 
+      product={selectedProduct} 
+      gotofavourates={gotofavourates}
+      addToCart = {addToCart}
+      />
       </>
       )
     }
@@ -146,7 +174,6 @@ function App() {
     <div className="App">
       <Navbar gotofavourates={gotofavourates} />
       {content()}
-      {/* <Login/> */}
       
       <QuestionBox />
       <Footer />
